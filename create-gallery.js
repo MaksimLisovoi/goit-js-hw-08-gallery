@@ -3,7 +3,9 @@ import images from './gallery-items.js';
 const gallery = document.querySelector('.js-gallery')
 
 const lightBox = document.querySelector('.js-lightbox')
+const lightBoxOverlay = document.querySelector('.lightbox__overlay') 
 const lightBoxBtn = document.querySelector('[data-action="close-lightbox"]')
+const lightBoxImg = document.querySelector('.lightbox__image')
 
 // Разметка
 
@@ -29,9 +31,8 @@ gallery.insertAdjacentHTML('afterbegin', createCollection);
 
 // Обработка событий
 
-const lightBoxImg = document.querySelector('.lightbox__image')
+
 gallery.addEventListener('click', e => {
-  
   
   e.preventDefault();
 
@@ -45,7 +46,11 @@ gallery.addEventListener('click', e => {
 
 // Закрытие модалки
 
-lightBoxBtn.addEventListener('click', e => {
+lightBox.addEventListener('click', e => {
+  if (e.target === lightBoxOverlay || e.target === lightBoxBtn ) {
+    console.log(e.key );
   lightBox.classList.remove('is-open');
   lightBoxImg.src = '';
+}
+  
   })
